@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.7.4 on linux)" generated="20200226 13:45:15.595" rpa="false">
+<suite id="s1" name="Dialogs-Library-Tests" source="/home/hakan/Python/Robot/robot-fw-dialogs-library-tests/Tests/dialogs-library-tests.robot">
+<test id="s1-t1" name="Use &quot;Execute Manual Step&quot;">
+<kw name="No Operation" library="BuiltIn" type="setup">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" starttime="20200226 13:45:15.935" endtime="20200226 13:45:15.935"></status>
+</kw>
+<kw name="Execute Manual Step" library="Dialogs">
+<doc>Pauses test execution until user sets the keyword status.</doc>
+<arguments>
+<arg>message=Pass or Fail this step?</arg>
+<arg>default_error=Default error message (can be overridden)</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:45:15.936" endtime="20200226 13:45:19.876"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>This log will print only if Execute Manual Step keyword passes</arg>
+</arguments>
+<msg timestamp="20200226 13:45:19.876" level="INFO">This log will print only if Execute Manual Step keyword passes</msg>
+<status status="PASS" starttime="20200226 13:45:19.876" endtime="20200226 13:45:19.876"></status>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20200226 13:45:19.877" endtime="20200226 13:45:19.877"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:45:15.934" endtime="20200226 13:45:19.877" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Use &quot;Get Selection From User&quot;">
+<kw name="No Operation" library="BuiltIn" type="setup">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" starttime="20200226 13:45:19.880" endtime="20200226 13:45:19.880"></status>
+</kw>
+<kw name="Get Selection From User" library="Dialogs">
+<doc>Pauses test execution and asks user to select a value.</doc>
+<arguments>
+<arg>Which browser?</arg>
+<arg>chrome</arg>
+<arg>firefox</arg>
+</arguments>
+<assign>
+<var>${selected_browser}</var>
+</assign>
+<msg timestamp="20200226 13:45:22.532" level="INFO">${selected_browser} = firefox</msg>
+<status status="PASS" starttime="20200226 13:45:19.882" endtime="20200226 13:45:22.532"></status>
+</kw>
+<kw name="Get Selection From User" library="Dialogs">
+<doc>Pauses test execution and asks user to select a value.</doc>
+<arguments>
+<arg>Which url?</arg>
+<arg>@{URLs}</arg>
+</arguments>
+<assign>
+<var>${selected_url}</var>
+</assign>
+<msg timestamp="20200226 13:45:34.802" level="INFO">${selected_url} = http://www.pyregex.com/</msg>
+<status status="PASS" starttime="20200226 13:45:22.533" endtime="20200226 13:45:34.803"></status>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>url=${selected_url}</arg>
+<arg>browser=${selected_browser}</arg>
+</arguments>
+<msg timestamp="20200226 13:45:34.804" level="INFO">Opening browser 'firefox' to base url 'http://www.pyregex.com/'.</msg>
+<msg timestamp="20200226 13:45:34.808" level="INFO">Firefox driver log is always forced to to: /home/hakan/Python/Robot/robot-fw-dialogs-library-tests/Results/geckodriver-9.log</msg>
+<status status="PASS" starttime="20200226 13:45:34.803" endtime="20200226 13:45:49.577"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3s</arg>
+</arguments>
+<msg timestamp="20200226 13:45:52.578" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20200226 13:45:49.577" endtime="20200226 13:45:52.578"></status>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20200226 13:45:52.579" endtime="20200226 13:46:02.517"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:45:19.879" endtime="20200226 13:46:02.517" critical="yes"></status>
+</test>
+<test id="s1-t3" name="Use &quot;Get Selections From User&quot;">
+<kw name="No Operation" library="BuiltIn" type="setup">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" starttime="20200226 13:46:02.521" endtime="20200226 13:46:02.521"></status>
+</kw>
+<kw name="Get Selections From User" library="Dialogs">
+<doc>Pauses test execution and asks user to select multiple values.</doc>
+<arguments>
+<arg>Which urls?</arg>
+<arg>@{URLs}</arg>
+</arguments>
+<assign>
+<var>@{selected_urls}</var>
+</assign>
+<msg timestamp="20200226 13:46:14.117" level="INFO">@{selected_urls} = [ http://robotframework.org/ | http://www.pyregex.com/ | http://github.com/ | https://www.amazon.com/ ]</msg>
+<status status="PASS" starttime="20200226 13:46:02.524" endtime="20200226 13:46:14.117"></status>
+</kw>
+<kw name="${url} IN [ @{selected_urls} ]" type="for">
+<kw name="${url} = http://robotframework.org/" type="foritem">
+<kw name="Open Browser Instance If None Or Open A Window In Existing Browser">
+<kw name="Get Browser Ids" library="SeleniumLibrary">
+<doc>Returns index of all active browser as list.</doc>
+<assign>
+<var>@{browser_ids}</var>
+</assign>
+<msg timestamp="20200226 13:46:14.119" level="INFO">@{browser_ids} = [ ]</msg>
+<status status="PASS" starttime="20200226 13:46:14.118" endtime="20200226 13:46:14.119"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${browser_ids}</arg>
+</arguments>
+<assign>
+<var>${number_of_browsers}</var>
+</assign>
+<msg timestamp="20200226 13:46:14.119" level="INFO">Length is 0</msg>
+<msg timestamp="20200226 13:46:14.119" level="INFO">${number_of_browsers} = 0</msg>
+<status status="PASS" starttime="20200226 13:46:14.119" endtime="20200226 13:46:14.119"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Open Browser</arg>
+<arg>browser=chrome</arg>
+</arguments>
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>browser=chrome</arg>
+</arguments>
+<msg timestamp="20200226 13:46:14.132" level="INFO">Opening browser 'chrome' to base url 'None'.</msg>
+<status status="PASS" starttime="20200226 13:46:14.131" endtime="20200226 13:46:16.789"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:14.120" endtime="20200226 13:46:16.789"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments if ``condition`` is false.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Execute Javascript</arg>
+<arg>window.open()</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:16.789" endtime="20200226 13:46:16.790"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:14.118" endtime="20200226 13:46:16.791"></status>
+</kw>
+<kw name="Switch To The Latest Window">
+<kw name="Get Window Handles" library="SeleniumLibrary">
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<arguments>
+<arg>browser=CURRENT</arg>
+</arguments>
+<assign>
+<var>@{window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:16.810" level="INFO">@{window_handles} = [ CDwindow-2E6295BCE287FEE821BDA8117ED1215C ]</msg>
+<status status="PASS" starttime="20200226 13:46:16.791" endtime="20200226 13:46:16.811"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${window_handles}</arg>
+</arguments>
+<assign>
+<var>${number_of_window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:16.811" level="INFO">Length is 1</msg>
+<msg timestamp="20200226 13:46:16.811" level="INFO">${number_of_window_handles} = 1</msg>
+<status status="PASS" starttime="20200226 13:46:16.811" endtime="20200226 13:46:16.811"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles==1</arg>
+<arg>Switch Window</arg>
+<arg>locator=CURRENT</arg>
+</arguments>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=CURRENT</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:16.817" endtime="20200226 13:46:16.819"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:16.812" endtime="20200226 13:46:16.819"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles&gt;1</arg>
+<arg>Switch Window</arg>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:16.819" endtime="20200226 13:46:16.828"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:16.791" endtime="20200226 13:46:16.828"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200226 13:46:16.828" level="INFO">Opening url 'http://robotframework.org/'</msg>
+<status status="PASS" starttime="20200226 13:46:16.828" endtime="20200226 13:46:26.590"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:14.118" endtime="20200226 13:46:26.590"></status>
+</kw>
+<kw name="${url} = http://www.pyregex.com/" type="foritem">
+<kw name="Open Browser Instance If None Or Open A Window In Existing Browser">
+<kw name="Get Browser Ids" library="SeleniumLibrary">
+<doc>Returns index of all active browser as list.</doc>
+<assign>
+<var>@{browser_ids}</var>
+</assign>
+<msg timestamp="20200226 13:46:26.597" level="INFO">@{browser_ids} = [ 1 ]</msg>
+<status status="PASS" starttime="20200226 13:46:26.591" endtime="20200226 13:46:26.597"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${browser_ids}</arg>
+</arguments>
+<assign>
+<var>${number_of_browsers}</var>
+</assign>
+<msg timestamp="20200226 13:46:26.598" level="INFO">Length is 1</msg>
+<msg timestamp="20200226 13:46:26.598" level="INFO">${number_of_browsers} = 1</msg>
+<status status="PASS" starttime="20200226 13:46:26.597" endtime="20200226 13:46:26.598"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Open Browser</arg>
+<arg>browser=chrome</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:26.598" endtime="20200226 13:46:26.599"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments if ``condition`` is false.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Execute Javascript</arg>
+<arg>window.open()</arg>
+</arguments>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200226 13:46:26.615" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200226 13:46:26.614" endtime="20200226 13:46:26.910"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:26.599" endtime="20200226 13:46:26.910"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:26.590" endtime="20200226 13:46:26.910"></status>
+</kw>
+<kw name="Switch To The Latest Window">
+<kw name="Get Window Handles" library="SeleniumLibrary">
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<arguments>
+<arg>browser=CURRENT</arg>
+</arguments>
+<assign>
+<var>@{window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:26.932" level="INFO">@{window_handles} = [ CDwindow-2E6295BCE287FEE821BDA8117ED1215C | CDwindow-128F341FACA9A3439946C0DCB69D8D4A ]</msg>
+<status status="PASS" starttime="20200226 13:46:26.911" endtime="20200226 13:46:26.936"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${window_handles}</arg>
+</arguments>
+<assign>
+<var>${number_of_window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:26.936" level="INFO">Length is 2</msg>
+<msg timestamp="20200226 13:46:26.936" level="INFO">${number_of_window_handles} = 2</msg>
+<status status="PASS" starttime="20200226 13:46:26.936" endtime="20200226 13:46:26.936"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles==1</arg>
+<arg>Switch Window</arg>
+<arg>locator=CURRENT</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:26.936" endtime="20200226 13:46:26.937"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles&gt;1</arg>
+<arg>Switch Window</arg>
+<arg>locator=NEW</arg>
+</arguments>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:26.938" endtime="20200226 13:46:26.977"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:26.938" endtime="20200226 13:46:26.977"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:26.910" endtime="20200226 13:46:26.977"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200226 13:46:26.978" level="INFO">Opening url 'http://www.pyregex.com/'</msg>
+<status status="PASS" starttime="20200226 13:46:26.977" endtime="20200226 13:46:29.884"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:26.590" endtime="20200226 13:46:29.884"></status>
+</kw>
+<kw name="${url} = http://github.com/" type="foritem">
+<kw name="Open Browser Instance If None Or Open A Window In Existing Browser">
+<kw name="Get Browser Ids" library="SeleniumLibrary">
+<doc>Returns index of all active browser as list.</doc>
+<assign>
+<var>@{browser_ids}</var>
+</assign>
+<msg timestamp="20200226 13:46:29.885" level="INFO">@{browser_ids} = [ 1 ]</msg>
+<status status="PASS" starttime="20200226 13:46:29.885" endtime="20200226 13:46:29.885"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${browser_ids}</arg>
+</arguments>
+<assign>
+<var>${number_of_browsers}</var>
+</assign>
+<msg timestamp="20200226 13:46:29.886" level="INFO">Length is 1</msg>
+<msg timestamp="20200226 13:46:29.886" level="INFO">${number_of_browsers} = 1</msg>
+<status status="PASS" starttime="20200226 13:46:29.886" endtime="20200226 13:46:29.887"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Open Browser</arg>
+<arg>browser=chrome</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:29.887" endtime="20200226 13:46:29.893"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments if ``condition`` is false.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Execute Javascript</arg>
+<arg>window.open()</arg>
+</arguments>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200226 13:46:29.899" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200226 13:46:29.894" endtime="20200226 13:46:30.019"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:29.894" endtime="20200226 13:46:30.019"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:29.885" endtime="20200226 13:46:30.020"></status>
+</kw>
+<kw name="Switch To The Latest Window">
+<kw name="Get Window Handles" library="SeleniumLibrary">
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<arguments>
+<arg>browser=CURRENT</arg>
+</arguments>
+<assign>
+<var>@{window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:30.026" level="INFO">@{window_handles} = [ CDwindow-2E6295BCE287FEE821BDA8117ED1215C | CDwindow-128F341FACA9A3439946C0DCB69D8D4A | CDwindow-7A09012F0715DE12FD94351982CF514A ]</msg>
+<status status="PASS" starttime="20200226 13:46:30.020" endtime="20200226 13:46:30.026"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${window_handles}</arg>
+</arguments>
+<assign>
+<var>${number_of_window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:30.026" level="INFO">Length is 3</msg>
+<msg timestamp="20200226 13:46:30.026" level="INFO">${number_of_window_handles} = 3</msg>
+<status status="PASS" starttime="20200226 13:46:30.026" endtime="20200226 13:46:30.026"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles==1</arg>
+<arg>Switch Window</arg>
+<arg>locator=CURRENT</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:30.027" endtime="20200226 13:46:30.028"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles&gt;1</arg>
+<arg>Switch Window</arg>
+<arg>locator=NEW</arg>
+</arguments>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:30.041" endtime="20200226 13:46:30.077"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:30.028" endtime="20200226 13:46:30.077"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:30.020" endtime="20200226 13:46:30.078"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200226 13:46:30.078" level="INFO">Opening url 'http://github.com/'</msg>
+<status status="PASS" starttime="20200226 13:46:30.078" endtime="20200226 13:46:33.929"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:29.885" endtime="20200226 13:46:33.929"></status>
+</kw>
+<kw name="${url} = https://www.amazon.com/" type="foritem">
+<kw name="Open Browser Instance If None Or Open A Window In Existing Browser">
+<kw name="Get Browser Ids" library="SeleniumLibrary">
+<doc>Returns index of all active browser as list.</doc>
+<assign>
+<var>@{browser_ids}</var>
+</assign>
+<msg timestamp="20200226 13:46:33.930" level="INFO">@{browser_ids} = [ 1 ]</msg>
+<status status="PASS" starttime="20200226 13:46:33.930" endtime="20200226 13:46:33.930"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${browser_ids}</arg>
+</arguments>
+<assign>
+<var>${number_of_browsers}</var>
+</assign>
+<msg timestamp="20200226 13:46:33.930" level="INFO">Length is 1</msg>
+<msg timestamp="20200226 13:46:33.930" level="INFO">${number_of_browsers} = 1</msg>
+<status status="PASS" starttime="20200226 13:46:33.930" endtime="20200226 13:46:33.931"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Open Browser</arg>
+<arg>browser=chrome</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:33.931" endtime="20200226 13:46:33.936"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments if ``condition`` is false.</doc>
+<arguments>
+<arg>$number_of_browsers==0</arg>
+<arg>Execute Javascript</arg>
+<arg>window.open()</arg>
+</arguments>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<arguments>
+<arg>window.open()</arg>
+</arguments>
+<msg timestamp="20200226 13:46:33.938" level="INFO">Executing JavaScript:
+window.open()
+Without any arguments.</msg>
+<status status="PASS" starttime="20200226 13:46:33.937" endtime="20200226 13:46:34.245"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:33.936" endtime="20200226 13:46:34.245"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:33.929" endtime="20200226 13:46:34.245"></status>
+</kw>
+<kw name="Switch To The Latest Window">
+<kw name="Get Window Handles" library="SeleniumLibrary">
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<arguments>
+<arg>browser=CURRENT</arg>
+</arguments>
+<assign>
+<var>@{window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:34.257" level="INFO">@{window_handles} = [ CDwindow-2E6295BCE287FEE821BDA8117ED1215C | CDwindow-128F341FACA9A3439946C0DCB69D8D4A | CDwindow-7A09012F0715DE12FD94351982CF514A | CDwindow-8FAD0A38BB5EE4584AC5BDB51A37ECC4 ]</msg>
+<status status="PASS" starttime="20200226 13:46:34.246" endtime="20200226 13:46:34.257"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${window_handles}</arg>
+</arguments>
+<assign>
+<var>${number_of_window_handles}</var>
+</assign>
+<msg timestamp="20200226 13:46:34.258" level="INFO">Length is 4</msg>
+<msg timestamp="20200226 13:46:34.258" level="INFO">${number_of_window_handles} = 4</msg>
+<status status="PASS" starttime="20200226 13:46:34.257" endtime="20200226 13:46:34.258"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles==1</arg>
+<arg>Switch Window</arg>
+<arg>locator=CURRENT</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:34.258" endtime="20200226 13:46:34.259"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>$number_of_window_handles&gt;1</arg>
+<arg>Switch Window</arg>
+<arg>locator=NEW</arg>
+</arguments>
+<kw name="Switch Window" library="SeleniumLibrary">
+<doc>Switches to browser window matching ``locator``.</doc>
+<arguments>
+<arg>locator=NEW</arg>
+</arguments>
+<status status="PASS" starttime="20200226 13:46:34.281" endtime="20200226 13:46:34.342"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:34.259" endtime="20200226 13:46:34.342"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:34.245" endtime="20200226 13:46:34.342"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20200226 13:46:34.343" level="INFO">Opening url 'https://www.amazon.com/'</msg>
+<status status="PASS" starttime="20200226 13:46:34.343" endtime="20200226 13:46:40.060"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:33.929" endtime="20200226 13:46:40.060"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:14.117" endtime="20200226 13:46:40.060"></status>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20200226 13:46:40.060" endtime="20200226 13:46:40.272"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:02.518" endtime="20200226 13:46:40.272" critical="yes"></status>
+</test>
+<test id="s1-t4" name="Use &quot;Get Value From User&quot;">
+<kw name="No Operation" library="BuiltIn" type="setup">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" starttime="20200226 13:46:40.276" endtime="20200226 13:46:40.276"></status>
+</kw>
+<kw name="Get Value From User" library="Dialogs">
+<doc>Pauses test execution and asks user to input a value.</doc>
+<arguments>
+<arg>Enter a string</arg>
+<arg>default_value=Hakan</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20200226 13:46:43.795" level="INFO">${value} = Hakan</msg>
+<status status="PASS" starttime="20200226 13:46:40.277" endtime="20200226 13:46:43.795"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20200226 13:46:43.796" level="INFO">Hakan</msg>
+<status status="PASS" starttime="20200226 13:46:43.796" endtime="20200226 13:46:43.796"></status>
+</kw>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="teardown">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20200226 13:46:43.796" endtime="20200226 13:46:43.797"></status>
+</kw>
+<status status="PASS" starttime="20200226 13:46:40.273" endtime="20200226 13:46:43.797" critical="yes"></status>
+</test>
+<doc>test suite whose test cases utilizing the dialogs library keywords</doc>
+<status status="PASS" starttime="20200226 13:45:15.598" endtime="20200226 13:46:43.798"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="0" info="non-critical">failure-expected</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" id="s1" name="Dialogs-Library-Tests">Dialogs-Library-Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
